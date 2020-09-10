@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
 const ROOT_URL = "http://yoshi.willandskill.eu:8999/api/v1/";
 const LOGIN_URL = `${ROOT_URL}auth/api-token-auth/`;
 
 function App() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   function login() {
-    const email = emailInput.current.value
-    const password = passwordInput.current.value
     console.log(email, password);
     fetch(LOGIN_URL);
   }
@@ -17,11 +18,21 @@ function App() {
       <div>
         <div>
           <label>Email</label>
-          <input name="email" placeholder="jhon.doe@company.com"/>
+          <input
+            name="email"
+            value={email}
+            onChange={(event) => setEmail(event.currentTarget.value)}
+            placeholder="jhon.doe@company.com"
+          />
         </div>
         <div>
           <label>Password</label>
-          <input name="password" type="password"/>
+          <input
+            name="password"
+            value={password}
+            onChange={(event) => setPassword(event.currentTarget.value)}
+            type="password"
+          />
         </div>
         <button onClick={login}>Login</button>
       </div>
